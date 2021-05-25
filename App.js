@@ -1,15 +1,36 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MainPageScreen from './screens/MainPageScreen';
 
-export default function App() {
+const Stack = createStackNavigator();
+
+const App = () => {
+  const name = 'Fake ? News';
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen
+          name={name}
+          component={MainPageScreen}
+          options={() => ({
+            headerStyle: {
+              backgroundColor: '#000',
+            },
+            headerTitleStyle: {
+              color: '#cec269',
+              fontWeight: 'bold',
+              textAlign: 'center'
+            }
+          })}
+        />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
-}
+};
+
+export default App;
 
 const styles = StyleSheet.create({
   container: {
