@@ -6,10 +6,10 @@ This is one of 4 applications in Fake?News platform built as a News Room challen
 [Seva Deriushkin](https://github.com/SevaDer14)  
 [Luke Perrin](https://github.com/lukeperrin10)  
 [Kim Haaga](https://github.com/1CIM)  
-[Arun Singh](https://github.com/arunbhalli)  
-[Christer Forsgren](https://github.com/christerforsgren91)
-[Davit Danielyan](https://github.com/DavDan1)
-[Lucas Knudsen](https://github.com/LucasKnudsen)
+[Arun Singh](https://github.com/arunbhalli)   
+[Christer Forsgren](https://github.com/christerforsgren91)  
+[Davit Danielyan](https://github.com/DavDan1)  
+[Lucas Knudsen](https://github.com/LucasKnudsen)  
 
 
 ## Built with
@@ -47,10 +47,10 @@ $ yarn start
 ```
 
 ### Login credentials
-- Subscriber: email: subscriber@gmail.com password: password
+- Subscriber: </br>  email: subscriber@gmail.com </br> password: password
 
 ## Updates/Improvements   
-- That the user can sign up a new account
+- That the user can sign up a new account by buying a new subscription
 - That the user can buy a subsciption
 - Add more personal features, such as a profile page 
 - Create functionality to comment and rate on articles
