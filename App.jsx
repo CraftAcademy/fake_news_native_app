@@ -5,6 +5,7 @@ import { Provider } from 'react-redux';
 import { createDrawerNavigator } from '@react-navigation/drawer';
 import { NavigationContainer } from '@react-navigation/native';
 import HomeStack from './components/HomeStack';
+import CategoryStack from './components/CategoryStack';
 import BackyardStack from './components/BackyardStack';
 import LoginView from './views/LoginView';
 
@@ -34,6 +35,7 @@ const App = () => {
             },
           }}>
           <Drawer.Screen name='Home' component={HomeStack} />
+          <Drawer.Screen name='Categories' component={CategoryStack} />
           <Drawer.Screen name='Backyard Articles' component={BackyardStack} />
           <Drawer.Screen name='Login'>
             {(props) => <LoginView fromMenu={true} {...props} />}
