@@ -13,6 +13,20 @@ describe('User can see articles in specific category', () => {
       beforeEach(() => {
         cy.intercept(
           'GET',
+          'https://fakest-newzz.herokuapp.com/api/auth/validate_token',
+          {
+            fixture: 'visitorLogin.json',
+          }
+        );
+        cy.intercept(
+          'POST',
+          'https://fakest-newzz.herokuapp.com/api/auth/sign_in',
+          {
+            fixture: 'visitorLogin.json',
+          }
+        );
+        cy.intercept(
+          'GET',
           'https://fakest-newzz.herokuapp.com/api/articles/?category=**',
           {
             fixture: 'scienceCategories.json',
@@ -20,6 +34,10 @@ describe('User can see articles in specific category', () => {
         );
         cy.visit('/');
         cy.get('[data-testid=article]').first().click();
+        cy.get('[data-testid=email-input]').type('bob.kramer@hotmail.com');
+        cy.get('[data-testid=password-input]').type('password');
+        cy.get('[data-testid=login-submit]').click();
+        cy.wait(1000);
         cy.get('[data-testid=category-button]').click();
       });
       it('is expected to show two articles', () => {
@@ -49,13 +67,13 @@ describe('User can see articles in specific category', () => {
         );
         cy.visit('/');
         cy.get('[data-testid=drawer-menu]').click();
-        cy.contains('Categories').click();        
+        cy.contains('Categories').click();
       });
 
       it('is expected to redirect to Categories View', () => {
         cy.get('[data-testid=category]').should('have.length', 5);
         cy.get('[data-testid=category]').within(() => {
-          cy.get('[data-testid=title]').should('contain', 'Science')
+          cy.get('[data-testid=title]').should('contain', 'Science');
         });
       });
 
