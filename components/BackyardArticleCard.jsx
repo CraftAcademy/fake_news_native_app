@@ -4,7 +4,7 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const BackyardArticleCard = ({ article, navigation }) => {
   return (
-    <View style={styles.content}>
+    <View testID='backyard-article' style={styles.content}>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('backyard-article', {
