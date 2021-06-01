@@ -8,7 +8,7 @@ const Article = ({ article, navigation }) => {
       testID='article'
       style={styles.row}
       onPress={() => {
-        navigation.navigate(authenticated ? 'single article' : 'logIn', {
+        navigation.navigate(authenticated ? 'single-article' : 'logIn', {
           article: article,
         });
       }}>

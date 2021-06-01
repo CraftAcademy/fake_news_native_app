@@ -13,7 +13,7 @@ const Hero = ({ article, navigation }) => {
     <TouchableOpacity
       testID='hero-article'
       onPress={() => {
-        navigation.navigate('single article', {
+        navigation.navigate('single-article', {
           article: article,
         });
       }}>

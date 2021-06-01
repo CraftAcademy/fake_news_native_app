@@ -18,6 +18,18 @@ const BackyardArticles = {
       });
     } catch (error) {}
   },
+
+  async show(id) {
+    try {
+      const response = await axios.get(`/backyards/${id}`);
+      store.dispatch({
+        type: 'SET_SINGLE_ARTICLE_VIEW',
+        payload: {
+          article: response.data.backyard_article,
+        },
+      });
+    } catch (error) {}
+  },
 };
 
 export default BackyardArticles;

@@ -22,7 +22,7 @@ const HomeStack = () => {
         headerTintColor: '#CEC269',
       })}>
       <Stack.Screen
-        name='Home'
+        name='home'
         component={MainView}
         options={({ navigation }) => ({
           title: 'FAKE ? NEWS',
@@ -32,7 +32,7 @@ const HomeStack = () => {
           },
           headerLeft: () => (
             <AntDesign
-            testID='drawer-menu'
+              testID='drawer-menu'
               name='menu-fold'
               style={{ color: '#CEC269', paddingLeft: 15 }}
               size={24}
@@ -54,7 +54,7 @@ const HomeStack = () => {
               style={{ color: '#CEC269', paddingLeft: 15 }}
               size={24}
               onPress={() => {
-                navigation.navigate('Home');
+                navigation.navigate('home');
                 store.dispatch({ type: 'RESET_ERROR' });
               }}
             />
@@ -62,7 +62,7 @@ const HomeStack = () => {
         })}
       />
       <Stack.Screen
-        name='single article'
+        name='single-article'
         component={SingleArticleView}
         options={({ navigation }) => ({
           title: 'Back',
@@ -72,7 +72,7 @@ const HomeStack = () => {
               style={{ color: '#CEC269', paddingLeft: 15 }}
               size={24}
               onPress={() => {
-                navigation.navigate('Home');
+                navigation.navigate('home');
                 store.dispatch({ type: 'RESET_ERROR' });
               }}
             />
@@ -80,7 +80,7 @@ const HomeStack = () => {
         })}
       />
       <Stack.Screen
-        name='single category view'
+        name='single-category-view'
         component={SingleCategoryView}
         options={() => ({ title: category })}
       />

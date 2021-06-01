@@ -11,19 +11,27 @@ import {
 import store from '../state/store/configureStore';
 import { useSelector } from 'react-redux';
 import Authentication from '../modules/Authentication';
+import { AntDesign } from '@expo/vector-icons';
 
-const LoginView = ({ navigation, route }) => {
+const LoginView = ({ navigation, route, fromMenu }) => {
   const { errorMessage } = useSelector((state) => state);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const auth = new Authentication({ host: '' });
-  const article = route.params.article;
 
   const authenticate = async () => {
-    try {
-      await auth.signIn(email, password);
-      navigation.navigate('single article', { article: article });
-    } catch (error) {}
+    if (fromMenu) {
+      try {
+        await auth.signIn(email, password);
+        navigation.navigate('home');
+      } catch (error) {}
+    } else {
+      try {
+        const article = route.params.article;
+        await auth.signIn(email, password);
+        navigation.navigate('single-article', { article: article });
+      } catch (error) {}
+    }
   };
 
   return (
@@ -33,6 +41,20 @@ const LoginView = ({ navigation, route }) => {
         store.dispatch({ type: 'RESET_ERROR' });
       }}>
       <View style={styles.container}>
+        {fromMenu && (
+          <TouchableOpacity style={styles.backButton}>
+            <AntDesign
+              name='arrowleft'
+              style={{ color: '#CEC269', paddingLeft: 15 }}
+              size={24}
+              onPress={() => {
+                navigation.navigate('home');
+                store.dispatch({ type: 'RESET_ERROR' });
+              }}
+            />
+            <Text style={styles.backText}>Back</Text>
+          </TouchableOpacity>
+        )}
         <Text testID='login-header' style={styles.header}>
           Please log in to read this article
         </Text>
@@ -116,5 +138,18 @@ const styles = StyleSheet.create({
   text: {
     color: 'white',
     marginTop: 50,
+  },
+  backButton: {
+    flexDirection: 'row',
+    position: 'absolute',
+    top: 10,
+    left: 0,
+    alignItems: 'center',
+  },
+  backText: {
+    color: '#CEC269',
+    fontSize: 17,
+    fontWeight: 'bold',
+    marginLeft: 30,
   },
 });
