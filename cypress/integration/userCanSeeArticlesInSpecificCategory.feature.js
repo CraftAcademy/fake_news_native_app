@@ -56,7 +56,7 @@ describe('User can see articles in specific category', () => {
   });
 
   context('by navigating through side menu', () => {
-    describe.only('Succesfully', () => {
+    describe('Succesfully', () => {
       beforeEach(() => {
         cy.intercept(
           'GET',
