@@ -41,5 +41,9 @@ export const getLocation = async () => {
   }
 
   let location = await Location.getCurrentPositionAsync({});
-  BackyardArticles.index(location.coords);
+  if (location.coords.latitude) {
+    BackyardArticles.index(location.coords);
+  } else {
+    return
+  }  
 };

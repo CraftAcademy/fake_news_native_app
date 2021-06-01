@@ -25,7 +25,7 @@ const SingleArticleView = (props) => {
   }, [articleId]);
 
   return (
-    <ScrollView>
+    <ScrollView testID='single-article-view'>
       <Image
         testID='image'
         source={{ uri: article.image }}

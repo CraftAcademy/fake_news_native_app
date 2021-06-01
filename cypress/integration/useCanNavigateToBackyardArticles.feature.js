@@ -3,19 +3,65 @@ describe('User can navigate to backyard articles', () => {
     cy.viewport('iphone-x');
   });
 
-  describe('Unsuccesfully with no location given', () => {
-    beforeEach(() => {
+  describe('Successfully', () => {
+    before(() => {
       cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/backyards', {
         backyard_articles: [],
       });
-      cy.visit('/');
+      cy.visit('/', {
+        onBeforeLoad(window) {
+          const stubLocation = {
+            coords: {
+              latitude: 55.7842,
+              longitude: 12.4518,
+            },
+          };
+          cy.stub(window.navigator.geolocation, 'getCurrentPosition').callsFake(
+            (callback) => {
+              return callback(stubLocation);
+            }
+          );
+        },
+      });
       cy.get('[data-testid=drawer-menu]').click();
       cy.contains('Backyard Articles').click();
     });
-    it('is expected to show no article message', () => {
-      cy.get('[data-testid=no-backyard-message]').should(
+    it('is expected to display the country', () => {
+      cy.get('[data-testid=backyard-header]').should(
         'contain',
-        'No backyard available at this moment'
+        'Backyard Articles from Denmark'
+      );
+    });
+
+    it('is expected to show the list of articles', () => {
+      cy.get('[data-testid=backyard-article]').should('have.length', 2);
+    });
+  });
+
+  describe('Unseccesfilly, no geolocation', () => {
+    before(() => {
+      cy.visit('/', {
+        onBeforeLoad(window) {
+          const stubLocation = {
+            coords: { latitude: null, longitude: null },
+          };
+          cy.stub(window.navigator.geolocation, 'getCurrentPosition').callsFake(
+            (callback) => {
+              return callback(stubLocation);
+            }
+          );
+        },
+      });
+      cy.intercept('GET', 'https://fakest-newzz.herokuapp.com/api/backyards', {
+        backyard_articles: [],
+      });
+      cy.get('[data-testid=drawer-menu]').click();
+      cy.contains('Backyard Articles').click();
+    });
+    it('is expected to display no articles message', () => {
+      cy.get('[data-testid=no-location-message]').should(
+        'contain',
+        'Please share your location to get access to your backyard'
       );
     });
   });

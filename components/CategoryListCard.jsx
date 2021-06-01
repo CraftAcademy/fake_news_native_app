@@ -1,37 +1,37 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AntDesign } from '@expo/vector-icons';
 
-const BackyardArticleCard = ({ article, navigation }) => {
+const CategoryListCard = ({ category, description, navigation }) => {
   return (
-    <View testID='backyard-article' style={styles.content}>
+    <View testID={`category-${category}`} style={styles.content}>
       <TouchableOpacity
         onPress={() => {
-          navigation.navigate('backyard-article', {
-            article: article,
+          navigation.navigate('single-category-view', {
+            category: category,
           });
         }}>
-        <Text testID='backyard-title' style={styles.title}>
-          {article.title}
+        <Text testID='title' style={styles.title}>
+          {category}
         </Text>
         <View style={styles.cardContent}>
-          <Text testID='backyard-theme' style={styles.theme}>
-            {article.theme}
-          </Text>
-          <Text testID='backyard-written_by' style={styles.written_by}>
-            {article.written_by}
-          </Text>
+          <Text style={styles.description}>{description}</Text>
+          <AntDesign
+            name='arrowright'
+            style={{ color: '#CEC269', paddingLeft: 15 }}
+            size={24}
+          />
         </View>
       </TouchableOpacity>
     </View>
   );
 };
 
-export default BackyardArticleCard;
+export default CategoryListCard;
 
 const styles = StyleSheet.create({
   content: {
-    flex: 1,
     justifyContent: 'space-between',
     borderRadius: 10,
     shadowColor: '#000',
@@ -48,22 +48,18 @@ const styles = StyleSheet.create({
     backgroundColor: '#202325',
   },
   title: {
-    color: 'rgba(218,217,216,.9)',
-    fontSize: 14,
+    color: '#CEC269',
+    fontSize: 18,
     fontWeight: 'bold',
   },
-  theme: {
-    color: '#CEC269',
-    fontSize: 10,
-  },
-  written_by: {
-    color: '#CEC269',
-    fontSize: 10,
+  description: {
+    color: 'rgba(218,217,216,.9)',
+    fontSize: 15,
     paddingLeft: 15,
   },
   cardContent: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    marginTop: 20,
+    marginTop: 10,
   },
 });
