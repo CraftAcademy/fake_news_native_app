@@ -1,12 +1,9 @@
 import React from 'react';
-import { StyleSheet } from 'react-native';
 import { AntDesign } from '@expo/vector-icons';
 import { createStackNavigator } from '@react-navigation/stack';
 import SingleCategoryView from '../views/SingleCategoryView';
 
 import CategoryView from '../views/CategoryView';
-
-
 const Stack = createStackNavigator();
 
 const CategoryStack = () => {
@@ -19,7 +16,7 @@ const CategoryStack = () => {
         headerTintColor: '#CEC269',
       })}>
       <Stack.Screen
-        name='backyard-home'
+        name='categories-home'
         component={CategoryView}
         options={({ navigation }) => ({
           title: 'CATEGORIES',
@@ -41,7 +38,7 @@ const CategoryStack = () => {
         })}
       />
       <Stack.Screen
-        name='Single Category'
+        name='single-category-view'
         component={SingleCategoryView}
         options={({ navigation }) => ({
           title: 'Back',
@@ -51,9 +48,7 @@ const CategoryStack = () => {
               style={{ color: '#CEC269', paddingLeft: 15 }}
               size={24}
               onPress={() => {
-                navigation.navigate('single-category-view', {
-                  category: category,
-                });
+                navigation.navigate('categories-home');
                 store.dispatch({ type: 'RESET_ERROR' });
               }}
             />
@@ -66,4 +61,3 @@ const CategoryStack = () => {
 
 export default CategoryStack;
 
-const styles = StyleSheet.create({});

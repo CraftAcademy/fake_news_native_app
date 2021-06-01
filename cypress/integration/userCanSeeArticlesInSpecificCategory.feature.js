@@ -56,7 +56,7 @@ describe('User can see articles in specific category', () => {
   });
 
   context('by navigating through side menu', () => {
-    describe('Succesfully', () => {
+    describe.only('Succesfully', () => {
       beforeEach(() => {
         cy.intercept(
           'GET',
@@ -71,14 +71,13 @@ describe('User can see articles in specific category', () => {
       });
 
       it('is expected to redirect to Categories View', () => {
-        cy.get('[data-testid=category]').should('have.length', 5);
-        cy.get('[data-testid=category]').within(() => {
+        cy.get('[data-testid=category-Science]').within(() => {
           cy.get('[data-testid=title]').should('contain', 'Science');
         });
       });
 
       it('is expected to show two articles in science category', () => {
-        cy.get('[data-testid=category]').first().click();
+        cy.get('[data-testid=category-Science]').click();
         cy.get('[data-testid=view-by-category]').within(() => {
           cy.get('[data-testid=article]').should('have.length', 2);
         });

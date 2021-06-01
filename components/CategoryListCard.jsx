@@ -1,21 +1,27 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { AntDesign } from '@expo/vector-icons';
 
-const CategoryListCard = ({ category, navigation }) => {
+const CategoryListCard = ({ category, description, navigation }) => {
   return (
-    <View style={styles.content}>
+    <View testID={`category-${category}`} style={styles.content}>
       <TouchableOpacity
         onPress={() => {
           navigation.navigate('single-category-view', {
             category: category,
           });
         }}>
-        <Text style={styles.title}>{category}</Text>
+        <Text testID='title' style={styles.title}>
+          {category}
+        </Text>
         <View style={styles.cardContent}>
-          <Text style={styles.written_by}>
-            {'Get to know latest news from the world of science'}
-          </Text>
+          <Text style={styles.description}>{description}</Text>
+          <AntDesign
+            name='arrowright'
+            style={{ color: '#CEC269', paddingLeft: 15 }}
+            size={24}
+          />
         </View>
       </TouchableOpacity>
     </View>
@@ -39,16 +45,16 @@ const styles = StyleSheet.create({
     elevation: 22,
     padding: 10,
     margin: 10,
-    backgroundColor: '#CEC269',
+    backgroundColor: '#202325',
   },
   title: {
-    color: '#000',
-    fontSize: 14,
+    color: '#CEC269',
+    fontSize: 18,
     fontWeight: 'bold',
   },
-  written_by: {
-    color: '#000',
-    fontSize: 10,
+  description: {
+    color: 'rgba(218,217,216,.9)',
+    fontSize: 15,
     paddingLeft: 15,
   },
   cardContent: {

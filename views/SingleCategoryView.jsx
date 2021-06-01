@@ -24,7 +24,6 @@ const SingleCategoryView = (props) => {
           data={articlesInCategory}
           keyExtractor={(article) => article.id.toString()}
           renderItem={({ item }) => {
-
             return (
               <Article
                 article={item}
@@ -57,7 +56,7 @@ const styles = StyleSheet.create({
   },
   errorMessage: {
     fontSize: 18,
-    marginTop: '100%',
+    marginTop: '75%',
     textAlign: 'center',
     color: '#CEC269',
   },
