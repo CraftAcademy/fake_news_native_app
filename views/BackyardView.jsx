@@ -20,7 +20,9 @@ const BackyardView = ({ navigation }) => {
           </Text>
         ) : (
           <>
-            <Text testID='backyard-header' style={styles.header}>Backyard Articles from {location}</Text>
+            <Text testID='backyard-header' style={styles.header}>
+              Backyard Articles from {location}
+            </Text>
             <FlatList
               numColumns={2}
               data={backyardArticles}
@@ -42,7 +44,9 @@ const BackyardView = ({ navigation }) => {
           </>
         )
       ) : (
-        <Text style={styles.errorMessage} testID='no-location-message'>Please share your location to get access to your backyard</Text>
+        <Text style={styles.errorMessage} testID='no-location-message'>
+          Please share your location to get access to your backyard
+        </Text>
       )}
     </View>
   );
